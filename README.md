@@ -82,10 +82,7 @@ go test ./... -tags=unit -v
 | ------ | ------------ | ------------------------ |
 | POST   | `/signup`    | Register a new user      |
 | POST   | `/login`     | Authenticate and get JWT |
-| GET    | `/users`     | List all users           |
-| GET    | `/users/:id` | Get user by ID           |
-| PUT    | `/users/:id` | Update user              |
-| DELETE | `/users/:id` | Delete user              |
+
 
 ---
 
