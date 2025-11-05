@@ -30,9 +30,8 @@ base-crud-api/
 │   ├── middleware/        # JWT, logging, etc.
 │   ├── models/            # DTOs and data structs
 │   └── utils/             # Helpers (JWT, env loading)
-├── tests/
-│   └── user_handler_test.go
 ├── go.mod
+├── .env
 └── README.md
 ```
 
