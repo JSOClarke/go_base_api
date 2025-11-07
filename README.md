@@ -101,8 +101,3 @@ go test ./... -tags=unit -v
 - Swagger/OpenAPI auto-doc generation  
 - Support for multiple database backends  
 
----
-
-## License
-
-MIT License © 2025 [Your Name]
