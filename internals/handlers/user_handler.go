@@ -3,6 +3,7 @@ package handlers
 import (
 	"base_crud_api/internals/models"
 	"base_crud_api/internals/services"
+	"base_crud_api/metrics"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,10 +21,13 @@ func NewUserHandler(service *services.UserService) *UserHandler {
 
 func (uh *UserHandler) SignUpUser(r *gin.Context) {
 
+	metrics.UserRegistrationCounter.Inc()
+
 	var body models.LoginRequest
 
 	if err := r.ShouldBindJSON(&body); err != nil {
 		r.JSON(http.StatusBadRequest, gin.H{"error": "request body is missing paramters or empty"})
+		metrics.RequestErrorCounter.WithLabelValues("/signup", "400").Inc()
 		return
 
 	}
@@ -32,6 +36,8 @@ func (uh *UserHandler) SignUpUser(r *gin.Context) {
 
 	if err != nil {
 		r.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		metrics.RequestErrorCounter.WithLabelValues("/signup", "500")
+
 		return
 	}
 	r.JSON(http.StatusOK, gin.H{"username": string(service)})
